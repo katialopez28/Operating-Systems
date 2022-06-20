@@ -1,0 +1,63 @@
+Description: 
+In this assignment you will build your own implementation of malloc and free. That is, you will 
+need to implement a library that interacts with the operating system to perform heap management 
+on behalf of a user process.
+
+Getting the Source: 
+The source code for this assignment may be found at: https://github.com/CSE3320/Heap-Assignment 
+
+Building and Running the Code: 
+The code compiles into four shared libraries and four test programs.  
+To build the code, change to your top level assignment directory and type: 
+make 
+
+Once you have the library, you can use it to override the existing malloc by using LD_PRELOAD: 
+$ env LD_PRELOAD=lib/libmalloc-ff.so cat README.md 
+or  
+$ env LD_PRELOAD=lib/libmalloc-ff.so tests/test1
+
+To run the other heap management schemes replace libmalloc-ff.so with the appropriatelibrary: 
+Best-Fit:  libmalloc-bf.so  
+First-Fit: libmalloc-ff.so   
+Next-Fit:  libmalloc-nf.so  
+Worst-Fit: libmalloc-wf.so 
+
+
+Program Requirements: 
+Using the framework of malloc and free provided on the course github repository: 
+1. Implement splitting and coalescing of free blocks. If two free blocks are adjacent then 
+combine them.  If a free block is larger than the requested size then split the block into two. 
+
+2. Implement three additional heap management strategies: Next Fit, Worst Fit, Best Fit (First 
+Fit has already been implemented). 
+
+3. Counters exist in the code for tracking of the following events: 
+• Number of times the user calls malloc successfully 
+• Number of times the user calls free successfully 
+• Number of times we reuse an existing block 
+• Number of times we request a new block 
+• Number of times we split a block 
+• Number of times we coalesce blocks 
+• Number blocks in free list 
+• Total amount of memory requested 
+• Maximum size of the heap 
+
+The code will print these statistics (THESE STATS ARE FAKE) upon exit and should look like this: 
+mallocs:   8 
+frees:     8 
+reuses:    1 
+grows:     5 
+splits:    1 
+coalesces: 1 
+blocks:    5 
+requested: 7298 
+max heap:  4096 
+
+You will need to increment these counters where appropriate. 
+
+
+4. Four test programs are provided to help debug your code.  They are located in the tests directory. 
+
+5. Implement realloc and calloc: 
+       void *calloc(size_t nmemb, size_t size); 
+       void *realloc(void *ptr, size_t size); 
