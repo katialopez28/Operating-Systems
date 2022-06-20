@@ -1,0 +1,37 @@
+Part 1 Assignment Description:
+Given two character strings s1 and s2. Write a threaded program to find out the number 
+of substrings, in string s1, that is exactly the same as s2. 
+
+For example, suppose number_substring(s1, s2) implements the function, then 
+number_substring(“abcdab”, “ab”) = 2, number_substring(“aaa”, “a”) = 3, number_substring(“abac”, “bc”) = 0. 
+The size of s1 and s2 (n1 and n2) as well as their data are input by users. 
+
+Assume that n1 mod NUM_THREADS = 0 and n2 < n1/NUM_THREADS. 
+The provided program is a sequential solution of the problem. 
+
+read_f() reads the two strings from a file named “string.txt and num_substring() calculates the number of substrings. 
+
+You can find the source for this assignment on GitHub at: https://www.github.com/CSE3320/Substring-Assignment.
+
+Write a parallel program using a threading library based on this sequential solution.  
+You may use pthreads, C++ threads, Intel TBB, or another threading library.  You must 
+provide your rationale for choosing the library AND provide instructions for setting up 
+the VM to use your library if additional libraries need to be installed.
+
+HINT: Strings s1 and s2 are stored in a file named “string.txt”. String s1 is evenly 
+partitioned for NUM_THREADS threads to concurrently search for matching with 
+string s2. After a thread finishes its work and obtains the number of local matchings, 
+this local number is added into a global variable showing the total number of matched 
+substrings in string s1. Finally this total number is printed out. You can find an example 
+of the “string.txt” in the attached source code.
+
+
+
+
+Part 2 Assignment Description: 
+Use condition variables to implement the producer-consumer algorithm. Assume two 
+threads: one producer and one consumer. The producer reads characters one by one 
+from a string stored in a file named “message.txt”, then writes sequentially these 
+characters into a circular queue. Meanwhile, the consumer reads sequentially from the 
+queue and prints them in the same order. Assume a buffer (queue) size of 5 characters. 
+Write a threaded program using condition variables. 
